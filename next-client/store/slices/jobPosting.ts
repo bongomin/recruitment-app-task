@@ -1,5 +1,5 @@
 import { JobPostingProps } from '@/interface';
-import { createSlice} from '@reduxjs/toolkit';
+// import { createSlice} from '@reduxjs/toolkit';
 
 const jobPostings = [
     {
@@ -41,20 +41,20 @@ export interface IJobPostingState {
     jobPostings: Array<JobPostingProps>
 }
 
-const initialState: IJobPostingState = {
-    jobPostings
-}
+// const initialState: IJobPostingState = {
+//     jobPostings
+// }
 
-export const jobPostingState = createSlice({
-    name: 'jobPostings',
-    initialState,
-    reducers: {
-        listJobPostings: (state, action) => {
-            state.jobPostings = action.payload
-        }
-    }
-})
+// export const jobPostingState = createSlice({
+//     name: 'jobPostings',
+//     initialState,
+//     reducers: {
+//         listJobPostings: (state, action) => {
+//             state.jobPostings = action.payload
+//         }
+//     }
+// })
 
-export const {listJobPostings} = jobPostingState.actions
+// export const {listJobPostings} = jobPostingState.actions
 
-export default jobPostingState.reducer;
+// export default jobPostingState.reducer;
