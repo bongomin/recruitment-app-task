@@ -3,6 +3,8 @@ import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { useRouter } from 'next/router';
 import { login } from '@/utillities';
 
+
+
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -21,7 +23,11 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await login(email, password);
-      router.push('/');
+      if (response.token) {
+        router.push('/');
+      } else {
+        setErrors(['Login failed. Please try again.']);
+      }
     } catch (error) {
       console.error(error);
       setErrors(['Login failed. Please try again.']);
