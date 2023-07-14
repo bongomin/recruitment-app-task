@@ -4,10 +4,13 @@ import React, { useEffect, useState } from 'react';
 import JobPostingCard from './JobPostingCard';
 import JobPostingDetails from './JobPostingDetails';
 import { JobPostingProps } from '@/interface';
-import { fetchAllJobPostings } from '@/utillities';
 // import { IJobPostingState } from '@/store/slices/jobPosting';
 // import { useSelector } from 'react-redux';
 // import { RootState } from '@/store/store';
+
+interface MainPageLayoutProps {
+    jobPostingList: JobPostingProps[];
+}
 
 interface CustomJSXElements {
     [key: string]: any;
@@ -19,71 +22,11 @@ declare global {
     }
 }
 
-const MainPageLayout: React.FC = () => {
+const MainPageLayout: React.FC<MainPageLayoutProps> = ({ jobPostingList }) => {
     const [selectedJobPosting, setSelectedJobPosting] = useState<JobPostingProps | null>(null);
     const [jobTypes, setJobTypes] = useState<string[]>([]);
     const [searchTerm, setSearchTerm] = useState('');
 
-    const fetchJobPostionList = async () => {
-        console.log('we are calling!!')
-        await fetchAllJobPostings()
-            .then(data => {
-                console.log(data, 'response data');
-            }).catch(error => console.log(error, 'server error'));
-
-    }
-
-    useEffect(() => {
-        console.log('brother benard')
-    }, []);
-
-    // const { jobPostings }: IJobPostingState = useSelector((state: RootState) => state.jobPostingList)
-
-    const jobPostings: JobPostingProps[] = [
-        {
-            id: 1,
-            title: 'Frontend Developer',
-            description: 'We are seeking a talented Frontend Developer to join our team. You will be responsible for creating beautiful and responsive user interfaces using modern web technologies.',
-            location: 'United States',
-            amount: 80000,
-            datePosted: '2023-07-05',
-            company: 'ABC Tech',
-            imageBanner: 'frontend-developer-image.jpg',
-        },
-        {
-            id: 2,
-            title: 'UX Designer',
-            description: 'We are looking for a creative UX Designer to design and shape unique, user-centric products and experiences. You will be involved in every aspect of the design process, from user research to prototyping and testing.',
-            location: 'United Kingdom',
-            amount: 60000,
-            datePosted: '2023-07-04',
-            company: 'XYZ Design',
-            imageBanner: 'ux-designer-image.jpg',
-        },
-        {
-            id: 3,
-            title: 'Full Stack Developer',
-            description: 'Join our team as a Full Stack Developer and contribute to the development of our innovative web applications. You will work with cutting-edge technologies to build robust and scalable solutions.',
-            location: 'Canada',
-            amount: 90000,
-            datePosted: '2023-07-03',
-            company: 'Tech Solutions Inc.',
-            imageBanner: 'full-stack-developer-image.jpg',
-        },
-        {
-            id: 4,
-            title: 'Backend Engineer',
-            description: 'We are hiring a skilled Backend Engineer to help us build and maintain efficient server-side applications. You will collaborate with cross-functional teams to develop high-quality software solutions.',
-            location: 'Germany',
-            amount: 75000,
-            datePosted: '2023-07-02',
-            company: 'TechCo GmbH',
-            imageBanner: 'backend-engineer-image.jpg',
-        },
-        // Add more job postings here
-    ];
-
-    console.log('logged')
 
     const selectJobPosting = (jobPosting: JobPostingProps) => {
         setSelectedJobPosting(jobPosting);
@@ -103,7 +46,7 @@ const MainPageLayout: React.FC = () => {
         setSearchTerm(event.target.value);
     };
 
-    const filteredJobPostings = jobPostings.filter((jobPosting) =>
+    const filteredJobPostings = jobPostingList.filter((jobPosting) =>
         jobPosting.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
@@ -188,13 +131,17 @@ const MainPageLayout: React.FC = () => {
 
                 {/* Middle Division: Job Postings List */}
                 <div className="w-1/2 p-4" style={{ marginLeft: '300px' }}>
-                    {filteredJobPostings.map((jobPosting) => (
-                        <JobPostingCard
-                            key={jobPosting.id}
-                            jobPosting={jobPosting}
-                            onSelectingJobPosting={onSelectingJobPosting}
-                        />
-                    ))}
+                    {filteredJobPostings && filteredJobPostings.length ? (
+                        filteredJobPostings.map((jobPosting) => (
+                            <JobPostingCard
+                                key={jobPosting.id}
+                                jobPosting={jobPosting}
+                                onSelectingJobPosting={onSelectingJobPosting}
+                            />
+                        ))
+                    ) : (
+                        <div>No Job Postings fetched</div>
+                    )}
                 </div>
 
                 {/* Right Division: Job Posting Details */}
