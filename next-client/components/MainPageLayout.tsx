@@ -133,7 +133,7 @@ const MainPageLayout: React.FC<MainPageLayoutProps> = ({ jobPostingList, isDataE
 
                 {/* Middle Division: Job Postings List */}
                 <div className="w-1/2 p-4" style={{ marginLeft: '300px' }}>
-                    {!isDataEmpty ? (
+                    {isDataEmpty ? (
                         filteredJobPostings.map((jobPosting) => (
                             <JobPostingCard
                                 key={jobPosting.id}

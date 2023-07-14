@@ -3,7 +3,9 @@ import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { useRouter } from 'next/router';
 import { login } from '@/utillities';
 
-
+interface LoginResponse {
+  token: string;
+}
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -22,7 +24,8 @@ const Login = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await login(email, password);
+      console.log('test')
+      const response: LoginResponse = await login(email, password);
       if (response.token) {
         router.push('/');
       } else {
