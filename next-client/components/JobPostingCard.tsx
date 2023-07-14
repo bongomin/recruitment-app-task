@@ -6,7 +6,7 @@ interface IJobPosting {
     onSelectingJobPosting: (data: JobPostingProps) => void;
 }
 
-const JobPosting: React.FC<IJobPosting> = ({
+const JobPostingCard: React.FC<IJobPosting> = ({
     jobPosting,
     onSelectingJobPosting
 }) => {
@@ -91,4 +91,4 @@ const JobPosting: React.FC<IJobPosting> = ({
     );
 };
 
-export default JobPosting;
+export default JobPostingCard;

@@ -9,6 +9,16 @@ import { fetchAllJobPostings } from '@/utillities';
 // import { useSelector } from 'react-redux';
 // import { RootState } from '@/store/store';
 
+interface CustomJSXElements {
+    [key: string]: any;
+}
+
+declare global {
+    namespace JSX {
+        interface IntrinsicElements extends CustomJSXElements { }
+    }
+}
+
 const MainPageLayout: React.FC = () => {
     const [selectedJobPosting, setSelectedJobPosting] = useState<JobPostingProps | null>(null);
     const [jobTypes, setJobTypes] = useState<string[]>([]);
@@ -31,48 +41,48 @@ const MainPageLayout: React.FC = () => {
 
     const jobPostings: JobPostingProps[] = [
         {
-          id: 1,
-          title: 'Frontend Developer',
-          description: 'We are seeking a talented Frontend Developer to join our team. You will be responsible for creating beautiful and responsive user interfaces using modern web technologies.',
-          location: 'United States',
-          amount: 80000,
-          datePosted: '2023-07-05',
-          company: 'ABC Tech',
-          imageBanner: 'frontend-developer-image.jpg',
+            id: 1,
+            title: 'Frontend Developer',
+            description: 'We are seeking a talented Frontend Developer to join our team. You will be responsible for creating beautiful and responsive user interfaces using modern web technologies.',
+            location: 'United States',
+            amount: 80000,
+            datePosted: '2023-07-05',
+            company: 'ABC Tech',
+            imageBanner: 'frontend-developer-image.jpg',
         },
         {
-          id: 2,
-          title: 'UX Designer',
-          description: 'We are looking for a creative UX Designer to design and shape unique, user-centric products and experiences. You will be involved in every aspect of the design process, from user research to prototyping and testing.',
-          location: 'United Kingdom',
-          amount: 60000,
-          datePosted: '2023-07-04',
-          company: 'XYZ Design',
-          imageBanner: 'ux-designer-image.jpg',
+            id: 2,
+            title: 'UX Designer',
+            description: 'We are looking for a creative UX Designer to design and shape unique, user-centric products and experiences. You will be involved in every aspect of the design process, from user research to prototyping and testing.',
+            location: 'United Kingdom',
+            amount: 60000,
+            datePosted: '2023-07-04',
+            company: 'XYZ Design',
+            imageBanner: 'ux-designer-image.jpg',
         },
         {
-          id: 3,
-          title: 'Full Stack Developer',
-          description: 'Join our team as a Full Stack Developer and contribute to the development of our innovative web applications. You will work with cutting-edge technologies to build robust and scalable solutions.',
-          location: 'Canada',
-          amount: 90000,
-          datePosted: '2023-07-03',
-          company: 'Tech Solutions Inc.',
-          imageBanner: 'full-stack-developer-image.jpg',
+            id: 3,
+            title: 'Full Stack Developer',
+            description: 'Join our team as a Full Stack Developer and contribute to the development of our innovative web applications. You will work with cutting-edge technologies to build robust and scalable solutions.',
+            location: 'Canada',
+            amount: 90000,
+            datePosted: '2023-07-03',
+            company: 'Tech Solutions Inc.',
+            imageBanner: 'full-stack-developer-image.jpg',
         },
         {
-          id: 4,
-          title: 'Backend Engineer',
-          description: 'We are hiring a skilled Backend Engineer to help us build and maintain efficient server-side applications. You will collaborate with cross-functional teams to develop high-quality software solutions.',
-          location: 'Germany',
-          amount: 75000,
-          datePosted: '2023-07-02',
-          company: 'TechCo GmbH',
-          imageBanner: 'backend-engineer-image.jpg',
+            id: 4,
+            title: 'Backend Engineer',
+            description: 'We are hiring a skilled Backend Engineer to help us build and maintain efficient server-side applications. You will collaborate with cross-functional teams to develop high-quality software solutions.',
+            location: 'Germany',
+            amount: 75000,
+            datePosted: '2023-07-02',
+            company: 'TechCo GmbH',
+            imageBanner: 'backend-engineer-image.jpg',
         },
         // Add more job postings here
-      ];
-      
+    ];
+
     console.log('logged')
 
     const selectJobPosting = (jobPosting: JobPostingProps) => {
