@@ -4,12 +4,14 @@ import React, { useEffect, useState } from 'react';
 import JobPostingCard from './JobPostingCard';
 import JobPostingDetails from './JobPostingDetails';
 import { JobPostingProps } from '@/interface';
+import EmptyState from './EmptyState';
 // import { IJobPostingState } from '@/store/slices/jobPosting';
 // import { useSelector } from 'react-redux';
 // import { RootState } from '@/store/store';
 
 interface MainPageLayoutProps {
     jobPostingList: JobPostingProps[];
+    isDataEmpty: boolean;
 }
 
 interface CustomJSXElements {
@@ -22,7 +24,7 @@ declare global {
     }
 }
 
-const MainPageLayout: React.FC<MainPageLayoutProps> = ({ jobPostingList }) => {
+const MainPageLayout: React.FC<MainPageLayoutProps> = ({ jobPostingList, isDataEmpty }) => {
     const [selectedJobPosting, setSelectedJobPosting] = useState<JobPostingProps | null>(null);
     const [jobTypes, setJobTypes] = useState<string[]>([]);
     const [searchTerm, setSearchTerm] = useState('');
@@ -131,7 +133,7 @@ const MainPageLayout: React.FC<MainPageLayoutProps> = ({ jobPostingList }) => {
 
                 {/* Middle Division: Job Postings List */}
                 <div className="w-1/2 p-4" style={{ marginLeft: '300px' }}>
-                    {filteredJobPostings && filteredJobPostings.length ? (
+                    {isDataEmpty ? (
                         filteredJobPostings.map((jobPosting) => (
                             <JobPostingCard
                                 key={jobPosting.id}
@@ -140,7 +142,10 @@ const MainPageLayout: React.FC<MainPageLayoutProps> = ({ jobPostingList }) => {
                             />
                         ))
                     ) : (
-                        <div>No Job Postings fetched</div>
+                        <EmptyState
+                            title="No Items"
+                            description="There no Job postings fetched......"
+                        />
                     )}
                 </div>
 
