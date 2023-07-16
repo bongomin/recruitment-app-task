@@ -10,7 +10,7 @@ const Navbar = () => {
           alt="RecruitmentWeb Logo"
           className="w-8 h-8 mr-2"
         />
-        Entrebyte Technologies
+        DanKumu Technologies
       </div>
       <div className="ml-auto space-x-4">
         <Link href="/saved" passHref>
