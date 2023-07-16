@@ -11,6 +11,7 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<string[]>([]);
+  const [errorMsg, setErrorMsg] = useState('');
   const router = useRouter();
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -24,7 +25,6 @@ const Login = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      console.log('test')
       const response: LoginResponse = await login(email, password);
       if (response.token) {
         router.push('/');
@@ -34,6 +34,7 @@ const Login = () => {
     } catch (error) {
       console.error(error);
       setErrors(['Login failed. Please try again.']);
+      setErrorMsg('Failed to login. Please try again.');
     }
   };
 
@@ -45,6 +46,15 @@ const Login = () => {
     <div className="flex items-center justify-center min-h-screen bg-gray-200">
       <div className="w-1/3">
         <form className="p-8 bg-white rounded shadow-md" onSubmit={handleSubmit}>
+          <div className="mb-4"> {/* Added parent div */}
+            {errorMsg && (
+              <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded">
+                <p className="text-red-500">
+                  {errorMsg}
+                </p>
+              </div>
+            )}
+          </div>
           <h2 className="text-2xl font-bold mb-6">Login</h2>
           <div className="mb-4">
             <label htmlFor="email" className="block mb-2">
