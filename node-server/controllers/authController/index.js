@@ -48,8 +48,7 @@ exports.signup = async (req, res) => {
 
     // Create the user in the database
     const newUser = await User.createUser({ email, full_name, password: hashedPassword });
-
-    res.status(201).json(newUser);
+    res.status(201).json({status : 200});
   } catch (error) {
     console.error('Error signing up:', error);
     res.status(500).json({ message: 'Failed to signup' });

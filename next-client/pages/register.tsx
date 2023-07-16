@@ -8,6 +8,12 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [errors, setErrors] = useState({
+    fullName: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
   const router = useRouter();
 
   const handleFullNameChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -28,9 +34,12 @@ const Register = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!validateForm()) {
+      return;
+    }
     try {
       const response = await signup(email, fullName, password, confirmPassword);
-      if (response.ok) {
+      if (response.status === 200) {
         router.push('/login');
       } else {
         const errorData = await response.json();
@@ -39,11 +48,48 @@ const Register = () => {
       }
     } catch (error) {
       console.error('An error occurred during signup:', error);
+      // Show error message to the user
     }
   };
 
   const handleLoginLinkClick = () => {
     router.push('/login');
+  };
+
+  const validateForm = () => {
+    let isValid = true;
+    const newErrors = {
+      fullName: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+    };
+
+    if (fullName.trim() === '') {
+      newErrors.fullName = 'Full Name is required';
+      isValid = false;
+    }
+
+    if (email.trim() === '') {
+      newErrors.email = 'Email is required';
+      isValid = false;
+    }
+
+    if (password.trim() === '') {
+      newErrors.password = 'Password is required';
+      isValid = false;
+    }
+
+    if (confirmPassword.trim() === '') {
+      newErrors.confirmPassword = 'Confirm Password is required';
+      isValid = false;
+    } else if (password !== confirmPassword) {
+      newErrors.confirmPassword = 'Passwords do not match';
+      isValid = false;
+    }
+
+    setErrors(newErrors);
+    return isValid;
   };
 
   return (
@@ -54,50 +100,58 @@ const Register = () => {
           <div className="mb-4">
             <label htmlFor="fullName" className="block mb-2">
               Full Name
+              <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
               id="fullName"
               value={fullName}
               onChange={handleFullNameChange}
-              className="w-full border border-gray-300 rounded px-3 py-2"
+              className={`w-full border border-gray-300 rounded px-3 py-2 ${errors.fullName && 'border-red-500'}`}
             />
+            {errors.fullName && <p className="text-red-500">{errors.fullName}</p>}
           </div>
           <div className="mb-4">
             <label htmlFor="email" className="block mb-2">
               Email
+              <span className="text-red-500">*</span>
             </label>
             <input
               type="email"
               id="email"
               value={email}
               onChange={handleEmailChange}
-              className="w-full border border-gray-300 rounded px-3 py-2"
+              className={`w-full border border-gray-300 rounded px-3 py-2 ${errors.email && 'border-red-500'}`}
             />
+            {errors.email && <p className="text-red-500">{errors.email}</p>}
           </div>
           <div className="mb-4">
             <label htmlFor="password" className="block mb-2">
               Password
+              <span className="text-red-500">*</span>
             </label>
             <input
               type="password"
               id="password"
               value={password}
               onChange={handlePasswordChange}
-              className="w-full border border-gray-300 rounded px-3 py-2"
+              className={`w-full border border-gray-300 rounded px-3 py-2 ${errors.password && 'border-red-500'}`}
             />
+            {errors.password && <p className="text-red-500">{errors.password}</p>}
           </div>
           <div className="mb-4">
             <label htmlFor="confirmPassword" className="block mb-2">
               Confirm Password
+              <span className="text-red-500">*</span>
             </label>
             <input
               type="password"
               id="confirmPassword"
               value={confirmPassword}
               onChange={handleConfirmPasswordChange}
-              className="w-full border border-gray-300 rounded px-3 py-2"
+              className={`w-full border border-gray-300 rounded px-3 py-2 ${errors.confirmPassword && 'border-red-500'}`}
             />
+            {errors.confirmPassword && <p className="text-red-500">{errors.confirmPassword}</p>}
           </div>
           <button
             type="submit"

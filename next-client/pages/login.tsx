@@ -24,6 +24,9 @@ const Login = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!validateForm()) {
+      return;
+    }
     try {
       const response: LoginResponse = await login(email, password);
       if (response.token) {
@@ -42,11 +45,29 @@ const Login = () => {
     router.push('/register');
   };
 
+  const validateForm = () => {
+    let isValid = true;
+    const newErrors: string[] = [];
+
+    if (email.trim() === '') {
+      newErrors.push('Email is required');
+      isValid = false;
+    }
+
+    if (password.trim() === '') {
+      newErrors.push('Password is required');
+      isValid = false;
+    }
+
+    setErrors(newErrors);
+    return isValid;
+  };
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-200">
       <div className="w-1/3">
         <form className="p-8 bg-white rounded shadow-md" onSubmit={handleSubmit}>
-          <div className="mb-4"> {/* Added parent div */}
+          <div className="mb-4">
             {errorMsg && (
               <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded">
                 <p className="text-red-500">
@@ -65,8 +86,9 @@ const Login = () => {
               id="email"
               value={email}
               onChange={handleEmailChange}
-              className="w-full border border-gray-300 rounded px-3 py-2"
+              className={`w-full border border-gray-300 rounded px-3 py-2 ${errors.includes('Email is required') && 'border-red-500'}`}
             />
+            {errors.includes('Email is required') && <p className="text-red-500">Email is required</p>}
           </div>
           <div className="mb-4">
             <label htmlFor="password" className="block mb-2">
@@ -77,8 +99,9 @@ const Login = () => {
               id="password"
               value={password}
               onChange={handlePasswordChange}
-              className="w-full border border-gray-300 rounded px-3 py-2"
+              className={`w-full border border-gray-300 rounded px-3 py-2 ${errors.includes('Password is required') && 'border-red-500'}`}
             />
+            {errors.includes('Password is required') && <p className="text-red-500">Password is required</p>}
           </div>
           <button
             type="submit"
