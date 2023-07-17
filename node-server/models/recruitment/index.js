@@ -7,16 +7,20 @@ const createRecruitment = (recruitmentData) => {
         title,
         description,
         remote,
+        amount,
         url,
         tags,
         job_types,
-        location,
-        created_at
+        location
     } = recruitmentData;
 
+    const created_at = new Date().getTime();
+    const saved_job = false;
+    const liked = false;
+
     const query = `
-    INSERT INTO recruitments (slug, company_name, title, description, remote, url, tags, job_types, location, created_at)
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+    INSERT INTO recruitments (slug, company_name, title, description, remote, amount, saved_job, liked, url, tags, job_types, location, created_at)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
     RETURNING *;
   `;
 
@@ -26,6 +30,9 @@ const createRecruitment = (recruitmentData) => {
         title,
         description,
         remote,
+        amount,
+        saved_job,
+        liked,
         url,
         tags,
         job_types,
@@ -43,6 +50,7 @@ const createRecruitment = (recruitmentData) => {
             throw new Error('Failed to create recruitment');
         });
 };
+
 
 // access all jobPostings
 const getAllRecruitments = () => {
