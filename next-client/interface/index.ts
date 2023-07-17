@@ -6,5 +6,6 @@ export interface JobPostingProps {
     amount: number;
     datePosted: string;
     company: string;
-    imageBanner: string
+    imageBanner: string,
+    created_at: string
 }

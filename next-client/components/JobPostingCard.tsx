@@ -23,6 +23,9 @@ const JobPostingCard: React.FC<IJobPosting> = ({
         console.log('Job saved!');
     };
 
+    const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+    const formattedCreatedAt: string = new Date(parseInt(jobPosting.created_at)).toLocaleDateString(undefined, options);
+
     return (
         <div className="border border-blue-300 shadow-sm rounded p-4 mb-4 hover:border-blue-300 hover:bg-blue-200 hover:shadow-lg">
             {/* Panel Header */}
@@ -62,7 +65,7 @@ const JobPostingCard: React.FC<IJobPosting> = ({
                         alt="Calendar Icon"
                         className="w-4 h-4 mr-2 object-contain"
                     />
-                    <span>{jobPosting.datePosted}</span>
+                    <span>{formattedCreatedAt}</span>
                 </div>
                 <p>{jobPosting.description}</p>
             </div>
@@ -72,7 +75,9 @@ const JobPostingCard: React.FC<IJobPosting> = ({
                 <div>{/* Additional content for the footer */}</div>
                 <div className="flex mt-4 md:mt-0">
                     <button
-                        className={`${isSaved ? 'bg-gray-300' : 'bg-white border-blue-300 hover:bg-blue-600 hover:text-white'
+                        className={`${isSaved
+                                ? 'bg-gray-300'
+                                : 'bg-white border-blue-300 hover:bg-blue-600 hover:text-white'
                             } text-blue-500 border hover:border-blue-500 rounded px-4 py-2 mr-2`}
                         onClick={handleSave}
                         disabled={isSaved}

@@ -1,10 +1,9 @@
+import axios from "axios";
 import dynamic from "next/dynamic";
-
-// fetch all job Postings
 export async function fetchAllJobPostings() {
-    const response = await fetch('http://localhost:8080/api/recruitments');
-    const results = await response.json();
-    return results;
+    const response = await axios.get('http://localhost:8080/api/recruitments');
+    console.log("first",response)
+    return response.data;
 }
 
 export async function login(email, password) {
