@@ -40,17 +40,16 @@ Once the backend and client are set up and running, you can access the recruitme
 
 ## UI/FRONTEND SCREENSHOOTS
 ---------------------------
-<img width="1438" alt="login" src="https://github.com/bongomin/recruitment-app-full-stack/assets/39218838/b2f34cb6-2884-4c8b-b1e1-2cbbfb148d97">
-<img width="1437" alt="signup" src="https://github.com/bongomin/recruitment-app-full-stack/assets/39218838/423fe4e0-1e4c-4940-b253-e7e4d02cb997">
-<img width="1440" alt="mainPage" src="https://github.com/bongomin/recruitment-app-full-stack/assets/39218838/9a16bdd6-ace9-4718-b602-919807afb23e">
+<img width="1438" alt="login" src="https://github.com/bongomin/recruitment-app-task/assets/39218838/51fb3a5c-1290-4ba1-8f97-b6e7421fa763">
+<img width="1437" alt="signup" src="https://github.com/bongomin/recruitment-app-task/assets/39218838/be392559-8836-42b8-b49e-c948ee0c98f7">
+<img width="1440" alt="recruitmentPage" src="https://github.com/bongomin/recruitment-app-task/assets/39218838/84314dac-e395-483d-a22e-e950caf53621">
 
 
 
 ## POSTMAN Backend Requests, Screenshoots
 -------------------------------------
-<img width="1435" alt="postman1" src="https://github.com/bongomin/recruitment-app-full-stack/assets/39218838/a258fc3b-8787-4c77-8ba2-9697da10848f">
-<img width="1429" alt="postman2" src="https://github.com/bongomin/recruitment-app-full-stack/assets/39218838/f4003c6a-1810-4fd6-b54e-ba9991adddea">
-<img width="1427" alt="postman3" src="https://github.com/bongomin/recruitment-app-full-stack/assets/39218838/2c0380d8-4fbe-490c-8138-d8ad496a26b2">
-
+<img width="1435" alt="postman1" src="https://github.com/bongomin/recruitment-app-task/assets/39218838/1f4fb0de-be29-4e79-8ba9-2eaef84fb096">
+<img width="1429" alt="postman2" src="https://github.com/bongomin/recruitment-app-task/assets/39218838/e01cd7cc-a7ed-4a51-89f1-799cb14e7550">
+<img width="1427" alt="postman3" src="https://github.com/bongomin/recruitment-app-task/assets/39218838/f5a96f00-ccaf-41cb-9823-262f6d10ed07">
 **** Boongomin Daniel
 
