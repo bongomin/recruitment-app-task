@@ -52,11 +52,5 @@ Once the backend and client are set up and running, you can access the recruitme
 <img width="1429" alt="postman2" src="https://github.com/bongomin/recruitment-app-full-stack/assets/39218838/f4003c6a-1810-4fd6-b54e-ba9991adddea">
 <img width="1427" alt="postman3" src="https://github.com/bongomin/recruitment-app-full-stack/assets/39218838/2c0380d8-4fbe-490c-8138-d8ad496a26b2">
 
-
-## Disclaimer:
- Due to time constraints, I was unable to complete the integration and frontend functionalities of the project. 
- However, I have submitted the work that I was able to complete as soon as possible.
- Thank you for your understanding and consideration.
-
 **** Boongomin Daniel
 
